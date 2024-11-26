@@ -112,8 +112,11 @@ func (l *locator) GetService(ctx context.Context, t reflect.Type) (service any) 
 }
 
 func NewServiceLocator() *locator {
+	scopes := make(map[string]map[reflect.Type]any)
+	scopes[globalScopeID] = make(map[reflect.Type]any)
+
 	return &locator{
-		scopes: make(map[string]map[reflect.Type]any),
+		scopes: scopes,
 		pr:     make(map[reflect.Type]serviceProvide),
 	}
 }
