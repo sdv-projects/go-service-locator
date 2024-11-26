@@ -7,8 +7,8 @@ import (
 
 // GetService is a generic function for getting Service by type.
 func GetService[T any](ctx context.Context, sl ServiceLocator) (T, error) {
-	var res T
-	res = sl.GetService(ctx, reflect.TypeOf(res)).(T)
+	st := new(T)
+	service := sl.GetService(ctx, reflect.TypeOf(st)).(T)
 
-	return res, nil
+	return service, nil
 }
